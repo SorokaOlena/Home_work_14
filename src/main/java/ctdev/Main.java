@@ -25,7 +25,7 @@ public class Main {
                     System.out.println("3: delete client");
                     System.out.println("4: change client");
                     System.out.println("5: view clients");
-//додала salary selection
+//1.додала salary selection
                     System.out.println("6: salary selection");
                     System.out.print("-> ");
 
@@ -46,7 +46,7 @@ public class Main {
                         case "5":
                             viewClients();
                             break;
-//додала case "6"
+//2.додала case "6"
                         case "6":
                             salarySelection();
                             break;
@@ -64,11 +64,13 @@ public class Main {
         }
     }
 
+
+
     private static void initDB() throws SQLException {
         Statement st = conn.createStatement();
         try {
             st.execute("DROP TABLE IF EXISTS Clients");
-//1.додала  "salary INT"
+//3.додала  "salary INT"
             st.execute("CREATE TABLE Clients (id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, name VARCHAR(20) NOT NULL, age INT, salary INT)");
         } finally {
             st.close();
@@ -81,17 +83,17 @@ public class Main {
         System.out.print("Enter client age: ");
         String sAge = sc.nextLine();
         int age = Integer.parseInt(sAge);
- //2.додала зарплату
+ //4.додала зарплату
         System.out.print("Enter client salary: ");
         String sSalary = sc.nextLine();
         int salary = Integer.parseInt(sSalary);
 
-//3.додала salary і ?
+//5.додала salary і ?
         PreparedStatement ps = conn.prepareStatement("INSERT INTO Clients (name, age, salary) VALUES(?, ?, ?)");
         try {
             ps.setString(1, name);
             ps.setInt(2, age);
- //4.додала ps.setInt(3, salary);
+ //6.додала ps.setInt(3, salary);
             ps.setInt(3, salary);
             ps.executeUpdate(); // for INSERT, UPDATE & DELETE
         } finally {
@@ -183,7 +185,7 @@ public class Main {
             ps.close();
         }
     }
-//намагалася додати метод salarySelection
+//7.намагалася додати метод salarySelection
     private static void salarySelection(Scanner sc) throws SQLException {
         System.out.print("Enter client salary: ");
         String salary = sc.nextLine();
